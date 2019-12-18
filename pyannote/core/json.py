@@ -26,10 +26,12 @@
 # AUTHORS
 # Hervé BREDIN - http://herve.niderb.fr
 from pathlib import Path
-from typing import Union, TextIO
+from typing import Union, TextIO, TYPE_CHECKING
 
 import simplejson as json
-from .utils.types import Resource
+
+if TYPE_CHECKING:
+    from .utils.types import Resource
 
 PYANNOTE_JSON = 'pyannote'
 PYANNOTE_JSON_CONTENT = 'content'
@@ -50,7 +52,7 @@ def object_hook(d):
     return d
 
 
-def load(fp: TextIO) -> Resource:
+def load(fp: TextIO) -> 'Resource':
     """Deserialize
 
     Parameters
@@ -66,7 +68,7 @@ def load(fp: TextIO) -> Resource:
     return json.load(fp, encoding='utf-8', object_hook=object_hook)
 
 
-def loads(s: str) -> Resource:
+def loads(s: str) -> 'Resource':
     """Deserialize
 
     Parameters
@@ -81,7 +83,7 @@ def loads(s: str) -> Resource:
     return json.loads(s, encoding='utf-8', object_hook=object_hook)
 
 
-def load_from(path: Union[str, Path]) -> Resource:
+def load_from(path: Union[str, Path]) -> 'Resource':
     """Deserialize
 
     Parameters
@@ -98,7 +100,7 @@ def load_from(path: Union[str, Path]) -> Resource:
         return load(fp)
 
 
-def dump(resource: Resource, fp: TextIO):
+def dump(resource: 'Resource', fp: TextIO):
     """Serialize
 
     Parameters
@@ -112,7 +114,7 @@ def dump(resource: Resource, fp: TextIO):
     json.dump(resource, fp, encoding='utf-8', for_json=True)
 
 
-def dumps(resource: Resource) -> str:
+def dumps(resource: 'Resource') -> str:
     """Serialize to string
 
     Parameters
@@ -127,7 +129,7 @@ def dumps(resource: Resource) -> str:
     return json.dumps(resource, encoding='utf-8', for_json=True)
 
 
-def dump_to(resource: Resource, path: Union[str, Path]):
+def dump_to(resource: 'Resource', path: Union[str, Path]):
     """Serialize
 
     Parameters

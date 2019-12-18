@@ -97,13 +97,14 @@ from sortedcontainers import SortedList
 from . import PYANNOTE_URI, PYANNOTE_SEGMENT
 from .json import PYANNOTE_JSON, PYANNOTE_JSON_CONTENT
 from .segment import Segment
-from .utils.types import Support, Label, CropMode
+from .utils.types import Label, CropMode
 
 #  this is a moderately ugly way to import `Annotation` to the namespace
 #  without causing some circular imports :
 #  https://stackoverflow.com/questions/39740632/python-type-hinting-without-cyclic-imports
 if TYPE_CHECKING:
     from .annotation import Annotation
+    from .utils.types import Support
 
 
 # =====================================================================
